@@ -2,6 +2,7 @@ import * as leia from "readline-sync"
 import { Refrigerante } from "./src/model/Refrigerante";
 import { Cerveja } from "./src/model/Cerveja";
 import { BebidaController } from "./src/controller/BebidaController";
+import { colors } from "./src/util/Colors";
 
 export function main() {
     let nome, marca, descricao, sabor: string;
@@ -9,6 +10,7 @@ export function main() {
     const tipoBebidas = ["Refrigerante", "Cerveja"]
     let bebidas: BebidaController = new BebidaController();
 
+    console.log(colors.bg.black, colors.fg.whitestrong);
     console.log("**************************************************")
     console.log("")
     console.log("\tTIO LUIZ BEBIDAS COMÉRCIO ONLINE ®️")
@@ -53,8 +55,8 @@ export function main() {
 
                 let bebida = bebidas.buscarNoArray(id);
                 if (bebida == null) {
-                    console.log(`A bebida de ID ${id} não foi encontrada.`);
-                    return;
+                    console.log(`A bebida de ID ${id} não foi encontrada.\n`);
+                    continue;
                 }
 
                 nome = leia.question("Digite o nome da bebida a ser atualizada: ")
@@ -80,6 +82,7 @@ export function main() {
                 break;
             case 6:
                 console.log("O Tio Luiz agradece sua visita!");
+                console.log(colors.reset, "");
                 process.exit(0);
                 break;
             default:
