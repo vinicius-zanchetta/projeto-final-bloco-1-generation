@@ -1,9 +1,19 @@
 import * as leia from "readline-sync"
+import { BebidaRepository } from "./src/repository/BebidaRepository";
+import { Refrigerante } from "./src/model/Refrigerante";
+import { Cerveja } from "./src/model/Cerveja";
 
 export function main() {
-    let nome, marca, descricao: string;
-    let id, opcao, preco, volume, tipo, estoque: number;
+    let nome, marca, descricao, sabor: string;
+    let id, opcao, preco, volume, tipo, estoque, teorAlcoolico: number;
     const tipoBebidas = ["Refrigerante", "Cerveja"]
+    // let bebidas: BebidaRepository = new BebidasController();
+
+    let refri: Refrigerante = new Refrigerante(1, "Coca-Cola", "Coca-Cola", 3.99, 350.00, 1, "Refri de Cola", 10, "Cola");
+    let breja: Cerveja = new Cerveja(2, "Coca-Cola", "Coca-Cola", 3.99, 350.00, 1, "Refri de Cola", 10, 3);
+
+    refri.visualizar();
+    breja.visualizar();
 
     console.log("**************************************************")
     console.log("")
@@ -28,7 +38,11 @@ export function main() {
                 descricao = leia.question("")
                 preco = leia.questionFloat("Digite o valor da bebida: ")
                 volume = leia.questionFloat("Digite em mililitros (ml) o volume da bebida: ")
-
+                if (tipo == 1) {
+                    sabor = leia.question("Digite o sabor do refrigerante: ")
+                } else {
+                    teorAlcoolico = leia.questionInt("Digite o teor alcóolico da cerveja (%): ")
+                }
                 break;
             case 2:
                 // bebidas.listarTodas();
